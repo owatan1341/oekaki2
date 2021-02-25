@@ -4,10 +4,12 @@ const canvas = document.querySelector("#draw-area");
 const context = canvas.getContext("2d");
 
 canvas.addEventListener("mousemove", (event) => {
+  // PC動作
   draw(event.layerX, event.layerY);
 });
 
 canvas.addEventListener("touchmove", (event) => {
+  // android動作
   var touch = event.touches[0];
   var x = touch.pageX - canvas.offsetLeft;
   var y = touch.pageY - canvas.offsetTop;
@@ -16,6 +18,7 @@ canvas.addEventListener("touchmove", (event) => {
 });
 
 canvas.addEventListener("mousedown", () => {
+  //PC動作
   context.beginPath();
   isDrag = true;
 });
@@ -23,9 +26,9 @@ canvas.addEventListener("mousedown", () => {
 canvas.addEventListener("mouseup", () => {
   context.closePath();
   isDrag = false;
-});
-
+}); //ここまで
 canvas.addEventListener("touchstart", () => {
+  //android動作
   context.beginPath();
   isDrag = true;
 });
@@ -33,7 +36,8 @@ canvas.addEventListener("touchstart", () => {
 canvas.addEventListener("touchend", () => {
   context.closePath();
   isDrag = false;
-});
+}); //ここまで
+
 const clearButton = document.querySelector("#clear-button");
 clearButton.addEventListener("click", () => {
   context.clearRect(0, 0, canvas.width, canvas.height);
